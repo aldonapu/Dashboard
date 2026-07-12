@@ -1,0 +1,111 @@
+.sidebar {
+     width: 260px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(24px);
+
+    border-right: 1px solid rgba(255, 255, 255, 0.6);
+
+    padding: 20px 14px;
+
+    transition: width 0.25s ease;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+    
+
+    &--collapsed {
+        width: 86px;
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        color: #2f3e62;
+    }
+
+    &__brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #6c7cff 0%, #8b9bff 100%);
+        color: white;
+        box-shadow: 0 12px 24px rgba(108, 124, 255, 0.25);
+    }
+
+    &__toggle {
+        border: 0;
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: #eef2ff;
+        color: #4f5d84;
+        cursor: pointer;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 14px;
+        color: #5a6b8c;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        &--active {
+           background: linear-gradient(90deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+            color: white;
+            box-shadow: 0 12px 24px rgba(108, 124, 255, 0.25);
+        }
+    }
+
+    &__icon {
+        font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+    }
+
+    &__label {
+        white-space: nowrap;
+    }
+
+ 
+.sidebar__brand-image {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+    }
+

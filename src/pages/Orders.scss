@@ -1,0 +1,210 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__eyebrow {
+        margin: 0 0 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #7b8cb5;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.list {
+    padding-left: 18px;
+    color: #45536b;
+    display: grid;
+    gap: 8px;
+}
+.card_orders {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 1.5rem 2rem;
+
+    min-height: 170px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+
+    overflow: hidden;
+}
+
+
+.card_orders .card_content {
+    flex: 1;
+
+    max-width: 65%;
+}
+
+
+.card_orders .card_title {
+
+    margin: 0 0 .5rem;
+
+    font-size: 1.6rem;
+
+    font-weight: 700;
+
+    color: #111827;
+
+}
+
+
+.card_orders .card_description {
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: .9rem;
+
+    line-height: 1.6;
+
+}
+
+
+.card_image_wrapper {
+
+    flex: 0 0 200px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.card_image_orders {
+
+    width: 180px;
+
+    height: 140px;
+
+    object-fit: contain;
+
+}
+@media (max-width: 992px) {
+
+    .card_orders {
+
+        padding: 1.25rem;
+
+        min-height: 150px;
+
+    }
+
+
+    .card_orders .card_title {
+
+        font-size: 1.4rem;
+
+    }
+
+
+    .card_orders .card_content {
+
+        max-width: 60%;
+
+    }
+
+
+    .card_image_wrapper {
+
+        flex-basis: 150px;
+
+    }
+
+
+    .card_image_orders {
+
+        width: 140px;
+
+        height: 110px;
+
+    }
+
+}
+@media (max-width: 768px) {
+
+    .card_orders {
+
+        flex-direction: column-reverse;
+
+        text-align: center;
+
+        padding: 1.25rem;
+
+    }
+
+
+    .card_orders .card_content {
+
+        max-width: 100%;
+
+    }
+
+
+    .card_orders .card_title {
+
+        font-size: 1.3rem;
+
+    }
+
+
+    .card_orders .card_description {
+
+        font-size: .85rem;
+
+    }
+
+
+    .card_image_wrapper {
+
+        width: 100%;
+
+    }
+
+
+    .card_image_orders {
+
+        width: 130px;
+
+        height: 100px;
+
+    }
+
+}
+

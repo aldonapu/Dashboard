@@ -1,0 +1,48 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+    }
+
+    &__eyebrow {
+        margin: 0 0 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #7b8cb5;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+
+    &__action {
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: linear-gradient(135deg, #6c7cff 0%, #8b9bff 100%);
+        color: white;
+        box-shadow: 0 12px 25px rgba(108, 124, 255, 0.25);
+        cursor: pointer;
+    }
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+}
+
+.list {
+    padding-left: 18px;
+    color: #45536b;
+    display: grid;
+    gap: 8px;
+}
