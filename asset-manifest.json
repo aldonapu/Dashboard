@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Dashboard/static/css/main.1c943721.css",
-    "main.js": "/Dashboard/static/js/main.2e8402b0.js",
+    "main.js": "/Dashboard/static/js/main.e1c368f9.js",
     "static/js/453.7a09d139.chunk.js": "/Dashboard/static/js/453.7a09d139.chunk.js",
     "static/media/InterVariable-Italic.woff2": "/Dashboard/static/media/InterVariable-Italic.e295f70fe3e2df296c7b.woff2",
     "static/media/InterVariable.woff2": "/Dashboard/static/media/InterVariable.a0e477f2f1f9d2376fde.woff2",
@@ -20,11 +20,11 @@
     "static/media/edituser.svg": "/Dashboard/static/media/edituser.a2c345938f22e17091f62282366b9d19.svg",
     "index.html": "/Dashboard/index.html",
     "main.1c943721.css.map": "/Dashboard/static/css/main.1c943721.css.map",
-    "main.2e8402b0.js.map": "/Dashboard/static/js/main.2e8402b0.js.map",
+    "main.e1c368f9.js.map": "/Dashboard/static/js/main.e1c368f9.js.map",
     "453.7a09d139.chunk.js.map": "/Dashboard/static/js/453.7a09d139.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1c943721.css",
-    "static/js/main.2e8402b0.js"
+    "static/js/main.e1c368f9.js"
   ]
 }
