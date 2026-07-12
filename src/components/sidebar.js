@@ -4,7 +4,7 @@ import logo from '../Brand.svg'
 
 
 const menuItems = [
-    { path: "/", label: "Dashboard", icon: "pi pi-home" },
+    { path: "/Dashboard", label: "Dashboard", icon: "pi pi-home" },
     { path: "/products", label: "Products", icon: "pi pi-database" },
     { path: "/orders", label: "Orders", icon: "pi pi-shopping-cart" },
     { path: "/users", label: "Users", icon: "pi pi-users" },
