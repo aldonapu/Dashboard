@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/Dashboard/static/css/main.1c943721.css",
+    "main.js": "/Dashboard/static/js/main.8f63c947.js",
+    "static/js/453.7a09d139.chunk.js": "/Dashboard/static/js/453.7a09d139.chunk.js",
+    "static/media/InterVariable-Italic.woff2": "/Dashboard/static/media/InterVariable-Italic.e295f70fe3e2df296c7b.woff2",
+    "static/media/InterVariable.woff2": "/Dashboard/static/media/InterVariable.a0e477f2f1f9d2376fde.woff2",
+    "static/media/primeicons.svg": "/Dashboard/static/media/primeicons.6ed59f962963a4a73af2.svg",
+    "static/media/primeicons.eot": "/Dashboard/static/media/primeicons.ff0c4cd79b2ffca2de54.eot",
+    "static/media/primeicons.woff": "/Dashboard/static/media/primeicons.8931fda1930c3bd21e96.woff",
+    "static/media/primeicons.ttf": "/Dashboard/static/media/primeicons.a5c2a53d1ff7a9ff5933.ttf",
+    "static/media/primeicons.woff2": "/Dashboard/static/media/primeicons.024b32cc7bf399b1a847.woff2",
+    "static/media/Gambar.svg": "/Dashboard/static/media/Gambar.e069238069faa36e3ee8b18497af68d7.svg",
+    "static/media/Products.svg": "/Dashboard/static/media/Products.a28a6c4a72c653872d9f57f00b72c8c9.svg",
+    "static/media/Orders.svg": "/Dashboard/static/media/Orders.7b3e9db39dfccf1eb4c0b4a3a5886d54.svg",
+    "static/media/Settings.svg": "/Dashboard/static/media/Settings.0bd17c6b322a7ee3348fdbfe109d7aaa.svg",
+    "static/media/Users.svg": "/Dashboard/static/media/Users.f3b834789daa1b9589070c245ae1e403.svg",
+    "static/media/Brand.svg": "/Dashboard/static/media/Brand.eb9ede70cd861e7a1e213f93a5abc55e.svg",
+    "static/media/addproduct.svg": "/Dashboard/static/media/addproduct.30957dc0f45f644a75c4047050fbe55c.svg",
+    "static/media/edituser.svg": "/Dashboard/static/media/edituser.a2c345938f22e17091f62282366b9d19.svg",
+    "index.html": "/Dashboard/index.html",
+    "main.1c943721.css.map": "/Dashboard/static/css/main.1c943721.css.map",
+    "main.8f63c947.js.map": "/Dashboard/static/js/main.8f63c947.js.map",
+    "453.7a09d139.chunk.js.map": "/Dashboard/static/js/453.7a09d139.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c943721.css",
+    "static/js/main.8f63c947.js"
+  ]
+}
