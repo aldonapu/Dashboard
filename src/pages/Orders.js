@@ -9,8 +9,10 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { db } from "../firebase";
+import { InputText } from 'primereact/inputtext'
 import {collection,getDocs,doc,getDoc,updateDoc, onSnapshot} from "firebase/firestore";
-
+import { Dropdown } from "primereact/dropdown";
+import { FilterMatchMode } from "primereact/api";
 
 export default function Orders() {
 const toast = useRef(null);
@@ -18,6 +20,36 @@ const [orders, setOrders] = useState([]);
 const [visible, setVisible] = useState(false);
 const [selectedOrder, setSelectedOrder] = useState(null);
 const [selectedUser, setSelectedUser] = useState(null);
+const[search, setSearch] =useState("");
+const [filters, setFilters] = useState({
+    status: {
+        value: null,
+        matchMode: FilterMatchMode.EQUALS
+    }
+});
+
+const statusOptions = [
+    { label: "Pending", value: "pending" },
+    { label: "Processing", value: "processing"},
+    { label: "Shipping", value: "shipping" },
+    { label: "Completed", value: "completed"    }
+];
+
+const statusRowFilterTemplate = (options) => {
+    return (
+        <Dropdown
+            value={options.value}
+            options={statusOptions}
+            optionLabel="label"
+            optionValue="value"
+            onChange={(e) => options.filterApplyCallback(e.value)}
+            placeholder="All"
+            showClear
+            className="p-column-filter"
+        />
+    );
+};
+
 const LoadOrders = async () => {  
     const snapshot = await getDocs(collection(db, "orders"));
     const ordersData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -116,6 +148,7 @@ const updateStatus = async (order, status) => {
 
    LoadOrders();
 };
+const filterOrders = orders.filter(order => order.orderNumber.toLowerCase().includes(search.toLowerCase()))
 
   return (
     <div className="page">
@@ -142,14 +175,15 @@ const updateStatus = async (order, status) => {
           />
         </div>
       </div>
-    <div className="Table-area">
-              <DataTable value={orders} responsiveLayout="scroll" paginator rows={5}>
-                <Column field="orderNumber" header="Order Number" />
-                <Column field="date" header="Date" />
-                <Column field="customerName" header="Customer Name" />
-                <Column field="total" header="Total" body={formatRupiah} />
-                <Column field="paymentStatus" header="Payment" />
-                <Column field="status" header="Status" body={statusBody} />
+    <div className="Table-area">    
+         <InputText value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Order Number" /> 
+            <DataTable value={filterOrders} responsiveLayout="scroll" paginator rows={5} filters={filters} onFilter={(e) => setFilters(e.filters)} filterDisplay="row">
+                <Column field="orderNumber" sortable style={{ width: '25%' }} header="Order Number" />
+                <Column field="date" sortable style={{ width: '25%' }} header="Date" />
+                <Column field="customerName" sortable style={{ width: '25%' }} header="Customer Name" />
+                <Column field="total" sortable style={{ width: '25%' }} header="Total" body={formatRupiah} />
+                <Column field="paymentStatus" sortable style={{ width: '25%' }} header="Payment" />
+                <Column field="status" header="Status"  body={statusBody} filter showFilterMenu={false} filterElement={statusRowFilterTemplate} style={{ width: "25%" }}/>
                 <Column header="Detail Order" body={detailBody} />
               </DataTable>
     </div>

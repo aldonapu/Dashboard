@@ -16,12 +16,12 @@ import { collection, addDoc, getDocs,updateDoc,deleteDoc, doc } from "firebase/f
 import addproduct from "../addproduct.svg";
 
 
-
 export default function Products() {
 const [products, setProducts] = useState([]);
 const toast = useRef(null);
 const [visible, setVisible] = useState(false);
 const [form, setForm] = useState({});
+const[search, setSearch] =useState("");
 
 const statusBodyTemplate = (rowData) => {
   if (rowData.stock === 0) {
@@ -184,6 +184,8 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
+const filterProducts = products.filter(product => product.nama.toLowerCase().includes(search.toLowerCase()))
+
     return (
         <div className="page">
           <Toast ref={toast} />
@@ -221,13 +223,14 @@ useEffect(() => {
       <div className="Table-area">
         <div className="action-button-wrapper">
           <Button label="Add Product" icon="pi pi-plus" className="add_product" onClick={() => {setVisible(true); setForm({});}} />
+             <InputText value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Product Name" />
         </div>
-          <DataTable value={products} responsiveLayout="scroll" paginator rows={5}>
-          <Column header="ID" body={(_, options) => <span>{options.rowIndex + 1}</span>} />
-          <Column field="nama" header="Product" />
-          <Column field="kategori" header="Category" />
-          <Column field="harga" header="Price" body={formatRupiah} />
-          <Column field="stock" header="Stock" />
+          <DataTable value={filterProducts} responsiveLayout="scroll" paginator rows={5} tableStyle={{ minWidth: "900px" }}>
+          <Column header="ID" sortable style={{ width: '25%' }} body={(_, options) => <span>{options.rowIndex + 1}</span>} />
+          <Column field="nama" sortable style={{ width: '25%' }} header="Product" />
+          <Column field="kategori" sortable style={{ width: '25%' }} header="Category" />
+          <Column field="harga" sortable style={{ width: '25%' }} header="Price" body={formatRupiah} />
+          <Column field="stock" sortable style={{ width: '25%' }} header="Stock" />
           <Column header="Status" body={statusBodyTemplate}/>
            <Column body={(data) => actionBodyTemplate(data)}header="Action"></Column>
         </DataTable>
