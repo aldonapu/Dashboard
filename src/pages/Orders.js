@@ -176,14 +176,38 @@ const filterOrders = orders.filter(order => order.orderNumber.toLowerCase().incl
         </div>
       </div>
     <div className="Table-area">    
-         <InputText value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Order Number" /> 
+         <div className="table-toolbar">
+    <InputText
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search Order Number"
+    />
+
+    <Dropdown
+        value={filters.status.value}
+        options={statusOptions}
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Filter Status"
+        showClear
+        onChange={(e) =>
+            setFilters({
+                ...filters,
+                status: {
+                    value: e.value,
+                    matchMode: FilterMatchMode.EQUALS
+                }
+            })
+        }
+    />
+</div>
             <DataTable value={filterOrders} responsiveLayout="scroll" paginator rows={5} filters={filters} onFilter={(e) => setFilters(e.filters)} filterDisplay="row">
                 <Column field="orderNumber" sortable style={{ width: '25%' }} header="Order Number" />
                 <Column field="date" sortable style={{ width: '25%' }} header="Date" />
                 <Column field="customerName" sortable style={{ width: '25%' }} header="Customer Name" />
                 <Column field="total" sortable style={{ width: '25%' }} header="Total" body={formatRupiah} />
                 <Column field="paymentStatus" sortable style={{ width: '25%' }} header="Payment" />
-                <Column field="status" header="Status"  body={statusBody} filter showFilterMenu={false} filterElement={statusRowFilterTemplate} style={{ width: "25%" }}/>
+                <Column field="status" header="Status"  body={statusBody} />
                 <Column header="Detail Order" body={detailBody} />
               </DataTable>
     </div>
