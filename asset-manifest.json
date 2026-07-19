@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Dashboard/static/css/main.afa53a67.css",
-    "main.js": "/Dashboard/static/js/main.2a15fbc3.js",
+    "main.css": "/Dashboard/static/css/main.f10416da.css",
+    "main.js": "/Dashboard/static/js/main.1a36f799.js",
     "static/js/453.7a09d139.chunk.js": "/Dashboard/static/js/453.7a09d139.chunk.js",
     "static/media/InterVariable-Italic.woff2": "/Dashboard/static/media/InterVariable-Italic.e295f70fe3e2df296c7b.woff2",
     "static/media/InterVariable.woff2": "/Dashboard/static/media/InterVariable.a0e477f2f1f9d2376fde.woff2",
@@ -19,12 +19,12 @@
     "static/media/addproduct.svg": "/Dashboard/static/media/addproduct.30957dc0f45f644a75c4047050fbe55c.svg",
     "static/media/edituser.svg": "/Dashboard/static/media/edituser.a2c345938f22e17091f62282366b9d19.svg",
     "index.html": "/Dashboard/index.html",
-    "main.afa53a67.css.map": "/Dashboard/static/css/main.afa53a67.css.map",
-    "main.2a15fbc3.js.map": "/Dashboard/static/js/main.2a15fbc3.js.map",
+    "main.f10416da.css.map": "/Dashboard/static/css/main.f10416da.css.map",
+    "main.1a36f799.js.map": "/Dashboard/static/js/main.1a36f799.js.map",
     "453.7a09d139.chunk.js.map": "/Dashboard/static/js/453.7a09d139.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.afa53a67.css",
-    "static/js/main.2a15fbc3.js"
+    "static/css/main.f10416da.css",
+    "static/js/main.1a36f799.js"
   ]
 }
