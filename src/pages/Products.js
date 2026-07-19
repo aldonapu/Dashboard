@@ -14,6 +14,8 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { db } from "../firebase";
 import { collection, addDoc, getDocs,updateDoc,deleteDoc, doc } from "firebase/firestore";
 import addproduct from "../addproduct.svg";
+import {uploadImage} from "../cloudinary";
+import { FileUpload } from 'primereact/fileupload';
 
 
 export default function Products() {
@@ -22,6 +24,8 @@ const toast = useRef(null);
 const [visible, setVisible] = useState(false);
 const [form, setForm] = useState({});
 const[search, setSearch] =useState("");
+const [image, setImage] = useState(null);
+
 
 const statusBodyTemplate = (rowData) => {
   if (rowData.stock === 0) {
@@ -67,76 +71,75 @@ const handleDelete = async (data) => {
 };
 
 const submit = async () => {
-  try {
-    if (
-      !form.nama ||
-      !form.harga ||
-      !form.stock ||
-      !form.kategori ||
-      !form.deskripsi ||
-      !form.gambar
-    ) {
-      toast.current.show({
-        severity: "warn",
-        summary: "Warning",
-        detail: "Semua field harus diisi",
-        life: 3000,
-      });
-      return;
+    try {
+
+        let imageUrl = form.gambar;
+        let isUpdate = false
+
+        if (image) {
+            imageUrl = await uploadImage(image);
+        }
+
+        if (
+            !form.nama ||
+            !form.harga ||
+            !form.stock ||
+            !form.kategori ||
+            !form.deskripsi ||
+            (!form.id && !image)
+        ) {
+            toast.current.show({
+                severity: "warn",
+                summary: "Warning",
+                detail: "Semua field harus diisi",
+                life: 3000,
+            });
+            return;
+        }
+
+        if (form.id) {
+            isUpdate = true
+            const productRef = doc(db, "products", form.id);
+
+            await updateDoc(productRef, {
+                nama: form.nama,
+                harga: Number(form.harga),
+                stock: Number(form.stock),
+                kategori: form.kategori,
+                deskripsi: form.deskripsi,
+                gambar: imageUrl,
+                
+            });
+            
+
+        } else {
+
+            await addDoc(collection(db, "products"), {
+                nama: form.nama,
+                harga: Number(form.harga),
+                stock: Number(form.stock),
+                kategori: form.kategori,
+                deskripsi: form.deskripsi,
+                gambar: imageUrl,
+            });
+
+        }
+         toast.current.show({
+            severity: "success",
+            summary: "Berhasil!",
+            detail: isUpdate 
+                ? `Produk "${form.nama}" berhasil diperbarui` 
+                : `Produk "${form.nama}" berhasil ditambahkan`,
+            life: 3000,
+        });
+
+        setForm({});
+        setImage(null);
+        setVisible(false);
+
+    } catch (error) {
+        console.log(error);
     }
-
-    if (form.id) {
-  
-      const productRef = doc(db, "products", form.id);
-
-      await updateDoc(productRef, {
-        nama: form.nama,
-        harga: Number(form.harga),
-        stock: Number(form.stock),
-        kategori: form.kategori,
-        deskripsi: form.deskripsi,
-        gambar: form.gambar,
-      });
-
-      toast.current.show({
-        severity: "success",
-        summary: "Updated",
-        detail: "Data berhasil diupdate",
-        life: 3000,
-      });
-
-    } else {
-  
-      await addDoc(collection(db, "products"), {
-        nama: form.nama,
-        harga: Number(form.harga),
-        stock: Number(form.stock),
-        kategori: form.kategori,
-        deskripsi: form.deskripsi,
-        gambar: form.gambar,
-      });
-
-      toast.current.show({
-        severity: "success",
-        summary: "Created",
-        detail: "Data berhasil ditambahkan",
-        life: 3000,
-      });
-    }
-
-    setForm({});
-    setVisible(false);
-
-  } catch (error) {
-    console.error(error);
-
-    toast.current.show({
-      severity: "error",
-      summary: "Error",
-      detail: "Terjadi kesalahan",
-      life: 3000,
-    });
-  }
 };
 const confirm = (data) => {
         confirmDialog({
@@ -236,10 +239,21 @@ const filterProducts = products.filter(product => product.nama.toLowerCase().inc
         </DataTable>
       </div>
       <Dialog  header={form.id ? "Edit Produk" : "Tambah Produk"} visible={visible} style={{ width: '50vw' }} onHide={() => {if (!visible) return; setVisible(false); }}>
-        <div className="dialog-banner">
-        <img src={addproduct} alt="Product" className="dialog-banner-image"/>
-        </div>
-
+<div className="dialog-banner">
+        { image ? 
+            <img src={URL.createObjectURL(image)} alt="Preview" />
+            :
+        form.id ? (
+            // Saat EDIT: Tampilkan gambar produk yang sudah diupload
+            form.gambar ? (
+                <img src={form.gambar} alt="Product" className="dialog-banner-image" />
+            ) : (
+                <img src={addproduct} alt="Default Product" className="dialog-banner-image" />
+            )
+        ) : (
+            <img src={addproduct} alt="Add Product" className="dialog-banner-image" />
+        )}
+    </div>
             <div className="menu">
               <div className="p-inputgroup flex-1">
                 <span className="p-inputgroup-addon">
@@ -271,11 +285,9 @@ const filterProducts = products.filter(product => product.nama.toLowerCase().inc
                 </span>
                 <InputTextarea placeholder="deskripsi" value={form?.deskripsi} onChange={(e) => setForm({...form, deskripsi: e.target.value})} />
             </div>
-             <div className="p-inputgroup flex-1">
-                <span className="p-inputgroup-addon">
-                    <i className="pi pi-file"></i>
-                </span>
-                <InputText placeholder="gambar" value={form?.gambar} onChange={(e) => setForm({...form, gambar: e.target.value})} />
+             <div className="p-inputgroup flex-1" style={{display:"flex", gap:"2rem"}}>
+                <input type="file" accept="image/*" onChange={(e)=>setImage(e.target.files[0])}/>
+                {/* <FileUpload mode="basic" name="upload" url="/api/upload" accept="image/*" maxFileSize={1000000} onUpload={(e) => setImage(prev => e.files[0])} /> */}
             </div>
             </div>
             <div className="tombol-submit">

@@ -35,20 +35,7 @@ const statusOptions = [
     { label: "Completed", value: "completed"    }
 ];
 
-const statusRowFilterTemplate = (options) => {
-    return (
-        <Dropdown
-            value={options.value}
-            options={statusOptions}
-            optionLabel="label"
-            optionValue="value"
-            onChange={(e) => options.filterApplyCallback(e.value)}
-            placeholder="All"
-            showClear
-            className="p-column-filter"
-        />
-    );
-};
+
 
 const LoadOrders = async () => {  
     const snapshot = await getDocs(collection(db, "orders"));
@@ -176,7 +163,8 @@ const filterOrders = orders.filter(order => order.orderNumber.toLowerCase().incl
         </div>
       </div>
     <div className="Table-area">    
-         <div className="table-toolbar">
+    
+    <div className="table-toolbar">
     <InputText
         value={search}
         onChange={(e) => setSearch(e.target.value)}
